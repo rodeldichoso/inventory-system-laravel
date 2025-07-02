@@ -1,15 +1,19 @@
 # Inventory System
 
+**This project is for learning and demonstration purposes only. Not intended for production use.**
+
 A modern, responsive inventory management system built with Laravel, Tailwind CSS, Alpine.js, and Laravel Breeze.
 
 ## Features
 
 -   Product, Category, Supplier, and Order management (CRUD)
+-   Role-based access control (admin/staff) using Spatie Laravel Permission
+    -   Admins can manage (create, edit, delete) categories, suppliers, and products
+    -   Staff can view categories and suppliers, add suppliers, create products, restock products, and manage orders (except delete)
 -   Sales and restocking workflows
 -   Low stock alerts
 -   Dashboard with recent activity logs
 -   Activity logging for create/update/delete actions
--   Responsive, mobile-friendly UI with a consistent amber/yellow color scheme
 -   Authentication (login/register) powered by Laravel Breeze
 -   User profile management
 
@@ -17,6 +21,7 @@ A modern, responsive inventory management system built with Laravel, Tailwind CS
 
 -   Laravel (PHP)
 -   Laravel Breeze (authentication scaffolding)
+-   Spatie Laravel Permission (role/permission management)
 -   Tailwind CSS
 -   Alpine.js
 -   Vite (asset bundler)
@@ -33,26 +38,26 @@ A modern, responsive inventory management system built with Laravel, Tailwind CS
 
 ### Installation
 
-1. Create a new MySQL database for the project.
-2. Clone the repository:
+1.  Create a new MySQL database for the project.
+2.  Clone the repository:
     ```sh
     git clone https://github.com/rodeldichoso/inventory-system-laravel.git
     cd inventory-system
     ```
-3. Install PHP dependencies:
+3.  Install PHP dependencies:
     ```sh
     composer install
     ```
-4. Install JS dependencies:
+4.  Install JS dependencies:
     ```sh
     npm install
     ```
-5. Copy the example environment file and set your variables:
+5.  Copy the example environment file and set your variables:
     ```sh
     cp .env.example .env
     php artisan key:generate
     ```
-6. Configure your MySQL database in `.env`:
+6.  Configure your MySQL database in `.env`:
     ```env
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -61,17 +66,17 @@ A modern, responsive inventory management system built with Laravel, Tailwind CS
     DB_USERNAME=your_username
     DB_PASSWORD=your_password
     ```
-7. Run migrations and seeders:
+7.  Run migrations and seeders:
     ```sh
     php artisan migrate --seed
     ```
-8. Build assets:
+8.  Build assets:
     ```sh
     npm run build
     # or for development
     npm run dev
     ```
-9. Start the local server:
+9.  Start the local server:
     ```sh
     php artisan serve
     ```
@@ -86,6 +91,9 @@ Visit [http://localhost:8000](http://localhost:8000) in your browser.
 -   Or register a new user.
 -   Manage products, categories, suppliers, and orders from the dashboard.
 -   View recent activity logs and low stock alerts.
+-   Role-based access:
+    -   **Admins:** Full management of products, categories, suppliers, and orders
+    -   **Staff:** Can add/view products and suppliers, restock products, manage orders (except delete), but cannot edit/delete products, categories, or suppliers
 
 ## Customization
 

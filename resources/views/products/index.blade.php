@@ -55,12 +55,14 @@
                             <td class="border-b border-amber-100 px-2 sm:px-8 py-3 sm:py-5 text-amber-700 text-center text-xs sm:text-sm whitespace-nowrap {{ $isLowStock ? 'bg-red-100' : '' }} hidden md:table-cell">{{ $product->category->name ?? '--' }}</td>
                             <td class="border-b border-amber-100 px-2 sm:px-8 py-3 sm:py-5 text-amber-700 text-center text-xs sm:text-sm whitespace-nowrap {{ $isLowStock ? 'bg-red-100' : '' }} hidden md:table-cell">{{ $product->supplier->name ?? '--' }}</td>
                             <td class="border-b border-amber-100 px-2 sm:px-8 py-3 sm:py-5 flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center text-center text-xs sm:text-sm whitespace-nowrap {{ $isLowStock ? 'bg-red-100' : '' }}">
+                                @role('admin')
                                 <a href="{{ route('products.edit', $product) }}" class="bg-yellow-400 text-amber-900 px-3 sm:px-4 py-2 rounded-lg font-bold shadow hover:bg-yellow-500 transition w-full sm:w-auto">Edit</a>
                                 <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline w-full sm:w-auto" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-200 text-red-900 px-3 sm:px-4 py-2 rounded-lg font-bold shadow hover:bg-red-300 transition w-full sm:w-auto">Delete</button>
                                 </form>
+                                @endrole
                                 <a href="{{ route('products.restock', $product) }}" class="bg-green-400 text-white px-3 sm:px-4 py-2 rounded-lg font-bold shadow hover:bg-green-500 transition w-full sm:w-auto">Restock</a>
                             </td>
                             </tr>

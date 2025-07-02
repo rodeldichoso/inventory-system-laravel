@@ -41,9 +41,10 @@ class SupplierController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'contact' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255',
             'address' => 'nullable|string|max:255',
         ]);
-        if ($supplier = Supplier::create($request->only(['name', 'contact', 'address']))) {
+        if ($supplier = Supplier::create($request->only(['name', 'contact', 'email', 'address']))) {
             //log activity here if needed
             Activity::create([
                 'action' => 'create',
@@ -102,11 +103,12 @@ class SupplierController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'contact' => 'nullable|string|max:255',
+            'email' => 'nullable|string|email|max:255',
             'address' => 'nullable|string|max:255',
         ]);
 
         $supplier = Supplier::findOrFail($id);
-        if ($supplier->update($request->only(['name', 'contact', 'address']))) {
+        if ($supplier->update($request->only(['name', 'contact', 'email', 'address']))) {
             //log activity here if needed
             Activity::create([
                 'action' => 'update',
@@ -118,5 +120,11 @@ class SupplierController extends Controller
         }
 
         return redirect()->route('suppliers.index')->with('success', 'Supplier updated successfully!');
+    }
+
+    public function show($id)
+    {
+        $supplier = Supplier::findOrFail($id);
+        return view('suppliers.show', compact('supplier'));
     }
 }

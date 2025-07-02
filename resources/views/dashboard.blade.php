@@ -2,6 +2,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Quick Actions (moved to top) -->
+
             <div class="mb-10">
                 <div class="bg-gradient-to-br from-yellow-50 via-amber-100 to-yellow-200 border-4 border-amber-200 rounded-2xl shadow-lg p-8 flex flex-col md:flex-row gap-6 items-center justify-center">
                     <div class="text-2xl font-bold text-amber-800 flex items-center gap-2 mb-4 md:mb-0 md:mr-8">
@@ -13,7 +14,9 @@
                         <a href="{{ route('products.index') }}" class="bg-yellow-400 text-amber-900 px-6 py-3 rounded-lg font-bold shadow hover:bg-yellow-500 transition text-center">View All Products</a>
                         <a href="{{ route('products.index', ['low_stock' => 1, 'sort' => 'lowest']) }}" class="bg-red-400 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-red-500 transition text-center">View Low Stock</a>
                         <a href="{{ route('suppliers.create', ['from' => 'dashboard']) }}" class="bg-green-500 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-green-600 transition text-center">+ Add New Supplier</a>
+                        @role('admin')
                         <a href="{{ route('categories.create', ['from' => 'dashboard']) }}" class="bg-purple-500 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-purple-600 transition text-center">+ Add New Category</a>
+                        @endrole
                     </div>
                 </div>
             </div>
@@ -67,7 +70,9 @@
                     <div class="text-amber-700">Sold: <span class="font-bold">{{ $topProduct->sold_count }}</span></div>
                     <div class="text-amber-700">Stock: <span class="font-bold">{{ $topProduct->stock }}</span></div>
                     <div class="mt-4">
+                        @role('admin')
                         <a href="{{ route('products.edit', $topProduct) }}" class="bg-yellow-400 text-amber-900 px-4 py-2 rounded-lg font-bold shadow hover:bg-yellow-500 transition mr-2">Edit</a>
+                        @endrole
                         <a href="{{ route('products.restock', $topProduct) }}" class="bg-green-400 text-white px-4 py-2 rounded-lg font-bold shadow hover:bg-green-500 transition">Restock</a>
                     </div>
                     @else

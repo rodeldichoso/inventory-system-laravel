@@ -4,13 +4,15 @@
 
         <!-- Success message -->
         @if(session('success'))
-        <div id="success-alert" class="mb-6 p-4 bg-gradient-to-r from-emerald-200 via-emerald-100 to-emerald-50 border-2 border-emerald-400 text-emerald-900 rounded-xl font-bold text-lg shadow flex items-center gap-2">
+        <div id="success-alert" class="mb-6 p-4 bg-gradient-to-r from-amber-200 via-amber-100 to-amber-50 border-2 border-amber-400 text-amber-900 rounded-xl font-bold text-lg shadow flex items-center gap-2">
             <span class="text-xl">✔️</span>
             <span>{{ session('success') }}</span>
         </div>
         @endif
 
+        @role('admin')
         <a href="{{ route('categories.create') }}" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-amber-700 transition text-lg mb-6 inline-block">+ Add New Category</a>
+        @endrole
         <div class="overflow-x-auto">
             <table class="min-w-full bg-amber-50 border-2 border-amber-200 rounded-2xl shadow-xl mt-4 table-fixed">
                 <thead>
@@ -30,12 +32,15 @@
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-900 font-semibold">{{ $category->creator->name ?? 'N/A' }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700">{{ $category->created_at->format('Y-m-d H:i') }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 flex gap-4 justify-end">
+                            <a href="{{ route('categories.show', $category->id) }}" class="bg-blue-400 text-white px-4 py-2 rounded-lg font-bold shadow hover:bg-blue-500 transition">View</a>
+                            @role('admin')
                             <a href="{{ route('categories.edit', $category->id) }}" class="bg-yellow-400 text-amber-900 px-4 py-2 rounded-lg font-bold shadow hover:bg-yellow-500 transition">Edit</a>
                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-200 text-red-900 px-4 py-2 rounded-lg font-bold shadow hover:bg-red-300 transition">Delete</button>
                             </form>
+                            @endrole
                         </td>
                     </tr>
                     @empty

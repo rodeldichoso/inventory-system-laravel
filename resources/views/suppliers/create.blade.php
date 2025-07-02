@@ -12,6 +12,10 @@
                 <input type="text" name="contact" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">
             </div>
             <div class="mb-4">
+                <label class="block text-amber-900 font-bold mb-2">Email</label>
+                <input type="email" name="email" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">
+            </div>
+            <div class="mb-4">
                 <label class="block text-amber-900 font-bold mb-2">Address</label>
                 <input type="text" name="address" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">
             </div>

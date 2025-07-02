@@ -4,7 +4,7 @@
 
         <!-- Show success message if a supplier was created, edited, or deleted -->
         @if(session('success'))
-        <div id="success-alert" class="mb-6 p-4 bg-gradient-to-r from-emerald-200 via-emerald-100 to-emerald-50 border-2 border-emerald-400 text-emerald-900 rounded-xl font-bold text-lg shadow flex items-center gap-2">
+        <div id="success-alert" class="mb-6 p-4 bg-gradient-to-r from-amber-200 via-amber-100 to-amber-50 border-2 border-amber-400 text-amber-900 rounded-xl font-bold text-lg shadow flex items-center gap-2">
             <span class="text-xl">✔️</span>
             <span>{{ session('success') }}</span>
         </div>
@@ -17,6 +17,7 @@
                         <th class="border-b-4 border-amber-300 px-8 py-5 text-left text-lg">#</th>
                         <th class="border-b-4 border-amber-300 px-8 py-5 text-left text-lg">Name</th>
                         <th class="border-b-4 border-amber-300 px-8 py-5 text-left text-lg">Contact</th>
+                        <th class="border-b-4 border-amber-300 px-8 py-5 text-left text-lg">Email</th>
                         <th class="border-b-4 border-amber-300 px-8 py-5 text-left text-lg">Address</th>
                         <th class="border-b-4 border-amber-300 px-8 py-5 text-right text-lg">Actions</th>
                     </tr>
@@ -27,14 +28,18 @@
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700">{{ $key + 1 }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-900 font-semibold">{{ $supplier->name }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700">{{ $supplier->contact }}</td>
+                        <td class="border-b border-amber-100 px-8 py-5 text-amber-700">{{ $supplier->email }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700">{{ $supplier->address }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 flex gap-4 justify-end">
+                            <a href="{{ route('suppliers.show', $supplier->id) }}" class="bg-blue-400 text-white px-4 py-2 rounded-lg font-bold shadow hover:bg-blue-500 transition">View</a>
+                            @role('admin')
                             <a href="{{ route('suppliers.edit', $supplier->id) }}" class="bg-yellow-400 text-amber-900 px-4 py-2 rounded-lg font-bold shadow hover:bg-yellow-500 transition">Edit</a>
                             <form action="{{ route('suppliers.destroy', $supplier) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this supplier?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-red-200 text-red-900 px-4 py-2 rounded-lg font-bold shadow hover:bg-red-300 transition">Delete</button>
                             </form>
+                            @endrole
                         </td>
                     </tr>
                     @empty

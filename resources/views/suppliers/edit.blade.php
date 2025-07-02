@@ -13,6 +13,10 @@
                 <input type="text" name="contact" value="{{ old('contact', $supplier->contact) }}" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">
             </div>
             <div class="mb-4">
+                <label class="block text-amber-900 font-bold mb-2">Email</label>
+                <input type="email" name="email" value="{{ old('email', $supplier->email) }}" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">
+            </div>
+            <div class="mb-4">
                 <label class="block text-amber-900 font-bold mb-2">Address</label>
                 <input type="text" name="address" value="{{ old('address', $supplier->address) }}" class="w-full px-4 py-2 rounded-lg border-2 border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400">
             </div>
