@@ -7,7 +7,7 @@ export default defineConfig({
         port: 5173, // Default Vite port
         strictPort: true, // Ensure the port is not used by another process
         hmr: {
-            host: "192.168.100.134", // Replace with your PC's IP address
+            host: process.env.VITE_HMR_HOST || "localhost", // Use env var or fallback to localhost
         },
     },
     plugins: [
