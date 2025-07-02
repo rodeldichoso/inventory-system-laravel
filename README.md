@@ -95,4 +95,4 @@ Visit [http://localhost:8000](http://localhost:8000) in your browser.
 
 ## License
 
-This project is open-sourced under the MIT license.
+This project is open-sourced under the MIT license. Please note: This software is provided as-is for educational and development purposes, and may contain bugs or unfinished features.
