@@ -104,3 +104,11 @@ Visit [http://localhost:8000](http://localhost:8000) in your browser.
 ## License
 
 This project is open-sourced under the MIT license. Please note: This software is provided as-is for educational and development purposes, and may contain bugs or unfinished features.
+
+## About the Author
+
+Hi! I'm a passionate web developer who really loves to code and solve problems. This project is part of my learning journey and showcases my Laravel skills.
+
+-   GitHub: [rodeldichoso](https://github.com/rodeldichoso)
+
+Feel free to check out my other projects or reach out if you want to collaborate!
