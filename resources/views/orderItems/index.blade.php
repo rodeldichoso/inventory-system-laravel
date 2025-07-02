@@ -27,8 +27,8 @@
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-900 font-semibold text-center text-sm">{{ $item->product->name ?? 'N/A' }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700 text-center text-sm">{{ $item->product->sku ?? 'N/A' }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700 text-center text-sm">{{ $item->quantity }}</td>
-                        <td class="border-b border-amber-100 px-8 py-5 text-amber-800 font-bold text-center text-sm">${{ number_format($item->price, 2) }}</td>
-                        <td class="border-b border-amber-100 px-8 py-5 text-amber-700 font-bold text-center text-sm">${{ number_format($item->subtotal, 2) }}</td>
+                        <td class="border-b border-amber-100 px-8 py-5 text-amber-800 font-bold text-center text-sm">₱{{ number_format($item->price, 2) }}</td>
+                        <td class="border-b border-amber-100 px-8 py-5 text-amber-700 font-bold text-center text-sm">₱{{ number_format($item->subtotal, 2) }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 text-amber-700 text-center text-sm">{{ $item->created_at->format('Y-m-d H:i') }}</td>
                         <td class="border-b border-amber-100 px-8 py-5 flex gap-2 justify-center text-sm">
                             <a href="{{ route('orderitems.view', $item) }}" class="bg-amber-400 text-amber-900 px-4 py-2 rounded-lg font-bold shadow hover:bg-amber-500 transition text-sm">View</a>

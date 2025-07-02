@@ -19,6 +19,10 @@
                 <label for="name" class="block text-lg font-semibold text-amber-900 mb-2">Category Name</label>
                 <input type="text" name="name" id="name" class="w-full px-4 py-3 rounded-lg border-2 border-amber-300 focus:border-amber-500 focus:ring-amber-200 focus:ring-2 outline-none text-amber-900 text-lg" placeholder="Enter category name" required value="{{ old('name', $category->name ?? '') }}">
             </div>
+            <div>
+                <label for="description" class="block text-lg font-semibold text-amber-900 mb-2">Description (optional)</label>
+                <textarea name="description" id="description" class="w-full px-4 py-3 rounded-lg border-2 border-amber-300 focus:border-amber-500 focus:ring-amber-200 focus:ring-2 outline-none text-amber-900 text-lg" placeholder="Enter category description">{{ old('description', $category->description ?? '') }}</textarea>
+            </div>
             <div class="flex justify-end gap-4">
                 <a href="{{ route('categories.index') }}" class="bg-gray-200 text-amber-900 px-6 py-3 rounded-lg font-bold shadow hover:bg-gray-300 transition">Cancel</a>
                 <button type="submit" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-amber-700 transition">Update Category</button>

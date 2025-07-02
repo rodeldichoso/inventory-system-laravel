@@ -47,7 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     // Resource routes (after explicit admin-only routes)
-    Route::resource('products', ProductController::class)->only(['index', 'create', 'store']);
+    Route::resource('products', ProductController::class)->only(['index', 'create', 'store', 'show']);
     Route::resource('orderitems', OrderItemController::class)->only(['index', 'create', 'store']);
     Route::resource('orders', OrderController::class)->only(['index', 'create', 'store', 'edit']);
     Route::resource('categories', CategoryController::class)->only(['index', 'show']);

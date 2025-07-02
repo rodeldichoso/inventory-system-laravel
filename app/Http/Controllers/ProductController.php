@@ -153,4 +153,9 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Product restocked successfully!');
     }
+
+    public function show(Product $product)
+    {
+        return view('products.show', compact('product'));
+    }
 }

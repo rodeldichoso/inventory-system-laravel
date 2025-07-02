@@ -42,6 +42,9 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255'
         ]);
 
+        // Add optional description field
+        $validated['description'] = $request->input('description', null);
+
         $validated['created_by'] = $request->user()->id;
 
         if ($category = Category::create($validated)) {
@@ -79,11 +82,12 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
         ]);
 
         $category = Category::findOrFail($id);
-        if ($category->update($request->only(['name']))) {
+        if ($category->update($request->only(['name', 'description']))) {
             Activity::create([
                 'user_id' => Auth::id(),
                 'action' => 'update',

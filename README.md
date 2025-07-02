@@ -2,7 +2,7 @@
 
 **This project is for learning and demonstration purposes only. Not intended for production use.**
 
-A modern, responsive inventory management system built with Laravel, Tailwind CSS, Alpine.js, and Laravel Breeze.
+Inventory management system built with Laravel, Tailwind CSS, Alpine.js, and Laravel Breeze.
 
 ## Features
 

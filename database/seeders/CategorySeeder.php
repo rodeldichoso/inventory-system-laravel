@@ -20,6 +20,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             Category::create([
                 'name' => $category,
+                'description' => 'This is a description for ' . $category,
                 'created_by' => $creatorId->id, // Assuming the first user is the creator
             ]);
         }

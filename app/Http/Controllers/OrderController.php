@@ -78,13 +78,34 @@ class OrderController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
         $product = Product::findOrFail($validated['product_id']);
-        $validated['order_id'] = $orderId;
-        $validated['price'] = $product->price;
-        $validated['subtotal'] = $product->price * $validated['quantity'];
-        OrderItem::create($validated);
+        $order = Order::findOrFail($orderId);
+
+        // Check if the item already exists in the order
+        $orderItem = OrderItem::where('order_id', $orderId)
+            ->where('product_id', $validated['product_id'])
+            ->first();
+
+        if ($orderItem) {
+            // Update quantity and subtotal
+            $orderItem->quantity += $validated['quantity'];
+            $orderItem->subtotal = $orderItem->quantity * $product->price;
+            $orderItem->save();
+        } else {
+            // Create new order item
+            OrderItem::create([
+                'order_id' => $orderId,
+                'product_id' => $validated['product_id'],
+                'quantity' => $validated['quantity'],
+                'price' => $product->price,
+                'subtotal' => $product->price * $validated['quantity'],
+            ]);
+        }
+
+        //set the product status to pending again after they add a item/s
+        $order->status = 'pending';
+        $order->save();
 
         // Update order total
-        $order = Order::findOrFail($orderId);
         $order->total = $order->orderItems()->sum('subtotal');
         $order->save();
         // Decrement product stock
@@ -102,6 +123,7 @@ class OrderController extends Controller
     public function removeItem($orderId, $itemId)
     {
         $item = OrderItem::findOrFail($itemId);
+
         // Restore stock
         $item->product->increment('stock', $item->quantity);
         $item->delete();

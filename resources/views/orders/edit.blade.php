@@ -54,6 +54,7 @@
                             <td class="border-b border-amber-100 px-2 sm:px-6 py-2 sm:py-4 flex flex-col sm:flex-row gap-2 justify-end items-stretch sm:items-center text-xs sm:text-lg">
                                 <form action="{{ route('orders.removeItem', [$order->id, $item->id]) }}" method="POST" onsubmit="return confirm('Remove this item?');" class="w-full sm:w-auto">
                                     @csrf
+                                    @method('DELETE')
                                     <button type="submit" class="bg-red-200 text-red-900 px-3 sm:px-4 py-2 rounded-lg font-bold shadow hover:bg-red-300 transition w-full sm:w-auto">Remove</button>
                                 </form>
                             </td>

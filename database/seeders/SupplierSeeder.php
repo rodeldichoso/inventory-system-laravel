@@ -16,6 +16,7 @@ class SupplierSeeder extends Seeder
         Supplier::create([
             'name' => 'Supplier A',
             'contact' => '123-456-7890',
+            'email' => 'supplierA@example.com',
             'address' => '123 Supplier St, City, Country',
         ]);
     }
