@@ -23,7 +23,6 @@ Inventory management system built with Laravel, Tailwind CSS, Alpine.js, and Lar
 -   Laravel Breeze (authentication scaffolding)
 -   Spatie Laravel Permission (role/permission management)
 -   Tailwind CSS
--   Alpine.js
 -   Vite (asset bundler)
 -   MySQL (default, can be changed)
 
@@ -110,5 +109,3 @@ This project is open-sourced under the MIT license. Please note: This software i
 Hi! I'm a passionate web developer who really loves to code and solve problems. This project is part of my learning journey and showcases my Laravel skills.
 
 -   GitHub: [rodeldichoso](https://github.com/rodeldichoso)
-
-Feel free to check out my other projects or reach out if you want to collaborate!
