@@ -5,7 +5,6 @@
         background: none !important;
     }
 
-    /* Fix Breeze dropdown clipping and stacking on mobile/Android */
     nav,
     nav * {
         overflow: visible !important;

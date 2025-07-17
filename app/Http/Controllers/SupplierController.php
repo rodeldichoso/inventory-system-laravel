@@ -38,13 +38,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'contact' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255',
-            'address' => 'nullable|string|max:255',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'contact' => 'nullable|string|max:255',
+                'email' => 'nullable|string|email|max:255|unique:suppliers,email',
+                'address' => 'nullable|string|max:255',
+            ],
+            ['email.unique' => "The supplier email already exists."]
+        );
         if ($supplier = Supplier::create($request->only(['name', 'contact', 'email', 'address']))) {
+
             //log activity here if needed
             Activity::create([
                 'action' => 'create',
@@ -100,14 +104,18 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'contact' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255',
-            'address' => 'nullable|string|max:255',
-        ]);
-
         $supplier = Supplier::findOrFail($id);
+
+        $request->validate(
+            [
+                'name' => 'required|string|max:255',
+                'contact' => 'nullable|string|max:255',
+                'email' => 'nullable|string|email|max:255|unique:suppliers,email,' . $supplier->id,
+                'address' => 'nullable|string|max:255',
+            ],
+            ['email.unique' => "The supplier email already exists."]
+        );
+
         if ($supplier->update($request->only(['name', 'contact', 'email', 'address']))) {
             //log activity here if needed
             Activity::create([

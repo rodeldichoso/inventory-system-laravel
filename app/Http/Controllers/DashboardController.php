@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Activity;
 use App\Models\Category;
 use App\Models\Supplier;
 use App\Models\OrderItem;
-use App\Models\Activity;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,7 +19,7 @@ class DashboardController extends Controller
         $productsCount = Product::count();
         $salesCount = OrderItem::count();
         $totalStock = Product::sum('stock');
-        $ordersCount = \App\Models\Order::count();
+        $ordersCount = Order::count();
         $suppliersCount = Supplier::count();
         $categoriesCount = Category::count();
 

@@ -1,6 +1,17 @@
 <x-app-layout>
     <div class="max-w-xl mx-auto mt-20 bg-gradient-to-br from-yellow-100 via-amber-100 to-yellow-200 p-10 rounded-2xl shadow-lg border-4 border-amber-200">
         <h2 class="text-3xl font-bold text-amber-900 mb-8">Add New Supplier</h2>
+
+        @if ($errors->any())
+        <div class="mb-4 p-2 bg-red-100 border-2 border-red-400 text-red-900 rounded-xl font-bold text-lg shadow">
+            <ul class="list-disc pl-5">
+                @foreach ($errors->all() as $error)
+                <span>{{ $error }}</span>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <form action="{{ route('suppliers.store') }}" method="POST">
             @csrf
             <div class="mb-4">

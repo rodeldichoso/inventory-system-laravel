@@ -3,10 +3,10 @@
         <h2 class="text-3xl font-bold text-amber-900 mb-8">Add New Category</h2>
 
         @if ($errors->any())
-        <div class="mb-6 p-4 bg-red-100 border-2 border-red-400 text-red-900 rounded-xl font-bold text-lg shadow">
+        <div class="mb-4 p-2 bg-red-100 border-2 border-red-400 text-red-900 rounded-xl font-bold text-lg shadow">
             <ul class="list-disc pl-5">
                 @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <span>{{ $error }}</span>
                 @endforeach
             </ul>
         </div>
