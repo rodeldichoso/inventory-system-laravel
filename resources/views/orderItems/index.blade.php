@@ -4,6 +4,14 @@
             <h2 class="text-4xl font-black text-amber-900 drop-shadow-lg tracking-tight">Sales History</h2>
             <a href="{{ route('orderitems.create') }}" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-bold shadow hover:bg-amber-700 transition text-lg">+ Record New Sale</a>
         </div>
+
+        @if(session('success'))
+        <div id="success-alert" class="mb-4 sm:mb-6 p-3 sm:p-4 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-50 border-2 border-amber-400 text-amber-900 rounded-xl font-bold text-base sm:text-lg shadow flex items-center gap-2">
+            <span class="text-lg sm:text-xl">✔️</span>
+            <span>{{ session('success') }}</span>
+        </div>
+        @endif
+        
         <div class="overflow-x-auto">
             <table class="min-w-full bg-amber-50 border-2 border-amber-200 rounded-2xl shadow-xl table-fixed text-sm">
                 <thead>

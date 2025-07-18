@@ -49,6 +49,7 @@ class ProductController extends Controller
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'supplier_id' => 'required|exists:suppliers,id',
+            'description' => 'nullable|string',
         ]);
 
         if ($product = Product::create($validated)) {

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->foreignId('supplier_id')->nullable()->constrained('suppliers')->onDelete('set null');
             $table->decimal('price', 10, 2);
-            $table->integer('stock')->default(0);
+            $table->unsignedInteger('stock')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
         });

@@ -51,15 +51,28 @@ class OrderItemController extends Controller
         $validated['price'] = $product->price;
         $validated['subtotal'] = $product->price * $validated['quantity'];
 
-        if ($product->stock < $validated['quantity']) {
-            return back()->withErrors(['quantity' => 'Not enough stock available.']);
+        // Find existing order item for same order_id and product_id
+        $existingOrderItem = OrderItem::where('order_id', $validated['order_id'] ?? null)
+            ->where('product_id', $validated['product_id'])
+            ->first();
+
+        if ($existingOrderItem) {
+            $newQuantity = $existingOrderItem->quantity + $validated['quantity'];
+            if ($product->stock < $validated['quantity']) {
+                return back()->withErrors(['quantity' => 'Not enough stock available.'])->withInput();
+            }
+            $existingOrderItem->quantity = $newQuantity;
+            $existingOrderItem->subtotal = $product->price * $newQuantity;
+            $existingOrderItem->save();
+            // Decrease product stock by added quantity
+            $product->decrement('stock', $validated['quantity']);
+        } else {
+            if ($product->stock < $validated['quantity']) {
+                return back()->withErrors(['quantity' => 'Not enough stock available.'])->withInput();
+            }
+            OrderItem::create($validated);
+            $product->decrement('stock', $validated['quantity']);
         }
-
-        // Create the order item (sale)
-        OrderItem::create($validated);
-
-        // Decrease product stock
-        $product->decrement('stock', $validated['quantity']);
 
         return redirect()->route('orderitems.index')->with('success', 'Sale recorded successfully!');
     }
